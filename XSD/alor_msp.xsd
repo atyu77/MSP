@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified"
+           xmlns:sql="urn:schemas-microsoft-com:mapping-schema">
+<xs:annotation>
+ <xs:appinfo>
+<sql:relationship name = "DOC"
+       parent = "tMSP"
+       parent-key = "INN_IP DateMSP KatMSP FileID"	   
+       child-key = "INN_IP DateMSP KatMSP FileID"	     
+	   child = "tMSP" />
+<sql:relationship name = "INN_IP"
+       parent = "tMSP"
+       parent-key = "INN_IP DateMSP KatMSP FileID"
+       child-key = "INN_IP DateMSP KatMSP FileID"
+	   child = "tMSP" />	   
+
+<sql:relationship name = "INN_UL"
+       parent = "tMSP"
+       parent-key = "INN_IP INN_UL DateMSP KatMSP FileID"
+       child-key = "INN_IP INN_UL DateMSP KatMSP FileID"
+	   child = "tMSP" />	   
+ </xs:appinfo>
+</xs:annotation>
+ 
+ <xs:element name="Файл" sql:relation="tMSP">
+   <xs:complexType>
+       <xs:sequence>  
+          <xs:element name="Документ" sql:relation="tMSP"  sql:relationship = "DOC">
+                <xs:complexType>
+
+				    <xs:sequence>
+		             <xs:element name="ИПВклМСП" sql:relation="tMSP" sql:relationship = "INN_IP">
+					        <xs:complexType>
+                               <xs:attribute name="ИННФЛ" sql:field="INN_IP"/>                                	
+							</xs:complexType>
+                        </xs:element>
+						  <xs:element name="ОргВклМСП" sql:relation="tMSP" sql:relationship = "INN_UL">
+					        <xs:complexType>
+                               <xs:attribute name="ИННЮЛ" sql:field="INN_UL"/>                                	
+							</xs:complexType>
+                        </xs:element>
+				    </xs:sequence> 
+					
+				  <xs:attribute name="ДатаВклМСП" sql:field="DateMSP" type="xs:string"/>	     
+                  <xs:attribute name="КатСубМСП" sql:field="KatMSP" type="xs:int"/>				             
+				</xs:complexType>
+           </xs:element>					   
+	  </xs:sequence>
+    <xs:attribute name="ИдФайл" sql:field="FileID"/>	
+  </xs:complexType>
+</xs:element> 
+
+</xs:schema>
