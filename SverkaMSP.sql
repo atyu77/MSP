@@ -1,4 +1,4 @@
-alter proc SverkaMSP @dateStart smalldatetime,
+create proc SverkaMSP @dateStart smalldatetime,
         @dateEnd   smalldatetime
 as
 /*

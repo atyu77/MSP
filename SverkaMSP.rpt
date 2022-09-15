@@ -1,0 +1,236 @@
+object Form1: TForm1
+  Left = 800
+  Top = 420
+  ActiveControl = Button1
+  Caption = #1057#1074#1077#1088#1082#1072' '#1052#1057#1055
+  ClientHeight = 365
+  ClientWidth = 652
+  Color = clBtnFace
+  Font.Charset = DEFAULT_CHARSET
+  Font.Color = clWindowText
+  Font.Height = -11
+  Font.Name = 'Microsoft Sans Serif'
+  Font.Style = []
+  OldCreateOrder = False
+  OnShow = DsRptTemplateShow
+  StepType = qsNone
+  PixelsPerInch = 96
+  TextHeight = 13
+  object Label1: TLabel
+    Left = 112
+    Top = 32
+    Width = 428
+    Height = 24
+    Caption = #1057#1074#1077#1088#1082#1072' '#1089#1087#1080#1089#1082#1072' '#1052#1057#1055' '#1080#1079' '#1085#1072#1083#1086#1075#1086#1074#1086#1081' '#1089' '#1044#1080#1072#1089#1086#1092#1090#1086#1084
+    Font.Charset = DEFAULT_CHARSET
+    Font.Color = clWindowText
+    Font.Height = -19
+    Font.Name = 'Microsoft Sans Serif'
+    Font.Style = []
+    ParentFont = False
+  end
+  object Label3: TLabel
+    Left = 240
+    Top = 72
+    Width = 164
+    Height = 16
+    Caption = #1044#1072#1090#1072' '#1086#1082#1086#1085#1095#1072#1085#1080#1103' '#1087#1077#1088#1080#1086#1076#1072
+    Font.Charset = DEFAULT_CHARSET
+    Font.Color = clWindowText
+    Font.Height = -13
+    Font.Name = 'Microsoft Sans Serif'
+    Font.Style = []
+    ParentFont = False
+  end
+  object Button1: TButton
+    Left = 136
+    Top = 192
+    Width = 144
+    Height = 25
+    Caption = #1047#1072#1075#1088#1091#1079#1082#1072' '#1092#1072#1081#1083#1072
+    Font.Charset = DEFAULT_CHARSET
+    Font.Color = clWindowText
+    Font.Height = -13
+    Font.Name = 'Microsoft Sans Serif'
+    Font.Style = []
+    ParentFont = False
+    TabOrder = 0
+    OnClick = Button1Click
+  end
+  object Button2: TButton
+    Left = 344
+    Top = 192
+    Width = 144
+    Height = 24
+    Caption = #1057#1074#1077#1088#1082#1072
+    Font.Charset = DEFAULT_CHARSET
+    Font.Color = clWindowText
+    Font.Height = -13
+    Font.Name = 'Microsoft Sans Serif'
+    Font.Style = []
+    ParentFont = False
+    TabOrder = 1
+    OnClick = Button2Click
+  end
+  object Date2: TDateTimePicker
+    Left = 264
+    Top = 112
+    Width = 112
+    Height = 21
+    Date = 44806.410686273150000000
+    Time = 44806.410686273150000000
+    TabOrder = 2
+  end
+  object DsRptTemplate_Scripter: TDCScripter
+    Events = <
+      item
+        CallExisting = False
+        Component = Button1
+        Event = 'OnClick'
+        ScriptMethod = 'Button1Click'
+      end
+      item
+        CallExisting = False
+        Component = Button2
+        Event = 'OnClick'
+        ScriptMethod = 'Button2Click'
+      end
+      item
+        CallExisting = False
+        Component = Label3
+        Event = 'OnClick'
+        ScriptMethod = 'Label2Click'
+      end
+      item
+        CallExisting = False
+        Component = dlgOpenXLSX
+        Event = 'OnTypeChange'
+        ScriptMethod = 'dlgOpenXLSXTypeChange'
+      end
+      item
+        CallExisting = False
+        Component = Owner
+        Event = 'OnShow'
+        ScriptMethod = 'DsRptTemplateShow'
+      end>
+    Language = 'VBScript'
+    Script.Strings = (
+      ''
+      'Sub Button1Click(Sender)'
+      ''
+      'If dlgOpenXLSX.Execute Then'
+      ''
+      #39#1092#1072#1081#1083' '#1080#1079' '#1085#1072#1083#1086#1075#1086#1074#1086#1081
+      'sFileMSPN = dlgOpenXLSX.FileName'
+      ''
+      'Set objConnection1 = CreateObject("ADODB.Connection")'
+      'Set objRecordSet1  = CreateObject("ADODB.Recordset")'
+      'Set oADOStream = CreateObject("ADODB.Stream")'
+      ''
+      ''
+      'Set objExcel1 = CreateObject("Excel.Application")'
+      'objExcel1.Workbooks.Open(sFileMSPN)'
+      'Set objWorkbook1 = objExcel1.ActiveWorkbook.Worksheets("'#1051#1080#1089#1090'1")'
+      ''
+      'sServ="vabs2"'
+      'sDB="MSP"'
+      'sLogin = "loader"'
+      'sPasswd = "123456"'
+      ''
+      
+        'objConnection1.Open("provider=SQLOLEDB.1;data source="&sServ&";d' +
+        'atabase="&sDB&";uid="&sLogin&";Password="&sPasswd)'
+      'SQL = "delete from pSverkaMSP "'
+      'dt = CStr(CDATE(Date2.Date))'
+      '   RSN = 4'
+      '      Do Until objWorkbook1.Cells(RSN, 1).Value =""'
+      ''
+      
+        '         SQL = SQL+" insert pSverkaMSP select "+"'#39'"+objWorkbook1' +
+        '.Cells(RSN, 6).Value+"'#39'"+","+"'#39'"+objWorkbook1.Cells(RSN, 4).Valu' +
+        'e+"'#39'"+","+"'#39'"+objWorkbook1.Cells(RSN, 13).Value+"'#39'"+","+"'#39'"+objW' +
+        'orkbook1.Cells(RSN, 14).Value+"'#39'"+","+"'#39'"+dt+"'#39'"'
+      ''
+      '         RSN = RSN+1'
+      '      Loop'
+      'MsgBox("'#1047#1072#1075#1088#1091#1079#1082#1072' '#1089#1087#1080#1089#1082#1072' '#1079#1072#1074#1077#1088#1096#1077#1085#1072'")'
+      ''
+      'objRecordSet1.Open SQL, objConnection1'
+      'objConnection1.Close'
+      ''
+      ''
+      ''
+      'objExcel1.ActiveWorkbook.Close'
+      'objExcel1.Workbooks.Close'
+      'objExcel1.Application.Quit'
+      ''
+      ''
+      'end if '#39'dlgOpenXLSX.Execute'
+      ''
+      'End Sub'
+      ''
+      'Sub Button2Click(Sender)'
+      ''
+      'Tpr       = TRepExecRPT.Create'
+      'Tpr.Brief = "SverkaMSP_"'
+      'Tpr.AddParam dtDatetime, "Date", CSTR(CDate((Date2.Date)))'
+      'Tpr.Execute'
+      ''
+      ''
+      'End Sub'
+      ''
+      ''
+      'Sub DsRptTemplateShow(Sender)'
+      ''
+      '  sqReadParam.Close'
+      '  sqReadParam.SQL = stbReadParam.Lines'
+      ''
+      '  '#39'sqReadParam.ParamByName("SysName").AsString = "Date"'
+      '  sqReadParam.Open'
+      '    dt1 = sqReadParam.FieldByName("Date").AsString'
+      ''
+      '    Date2.Date = CDBL(CDate(dt1))'
+      '  sqReadParam.Close'
+      ''
+      ''
+      'End Sub')
+  end
+  object dlgOpenXLSX: TOpenDialog
+    Filter = '|*.xlsx'
+    InitialDir = 'C:\Diasoft'
+    Title = #1042#1099#1073#1077#1088#1080#1090#1077' '#1092#1072#1081#1083' Excel'
+    Left = 256
+    Top = 233
+  end
+  object stbReadParam: DsTextBox
+    Lines.Strings = (
+      'select isnull('
+      '(select min(substring(ExecDate,1, 10)) '
+      '  from vabs2.MSP.dbo.pSverkaMSP), '
+      'convert(varchar,getdate(),104)'
+      ') as date')
+    Left = 256
+    Top = 288
+  end
+  object sqReadParam: DsQuery
+    Cursor = crSQLWait
+    ShowCursor = False
+    PortName.Name = 'PortName'
+    PortName.DataType = dtString
+    PortName.NullFormat = True
+    DescendingOrder = False
+    SQL.Strings = (
+      'select 1')
+    Logged = True
+    Prepared = False
+    ParamCheck = True
+    OwnConnection = False
+    DynamicPrecomp = False
+    Interval = 400
+    Aggregates = <>
+    Params = <>
+    LoadFieldDefsFromStream = False
+    Left = 168
+    Top = 288
+  end
+end

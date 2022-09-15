@@ -1,0 +1,174 @@
+[SQL]
+
+@SQL@=SQL{
+
+declare @date2  smalldatetime
+        ,@date1 smalldatetime
+               
+ select @date2 = %date!
+        ,@date1 = dateadd(dd,1,EOMONTH(dateadd(mm,-1,%date!)))
+ 
+ 
+exec SverkaMSP @date1, @date2
+
+select * from pSverkaMSP
+
+}
+[Fields]
+
+@INN@=Field{INN,@s20}
+@Kat@=Field{Kategory,@s50}
+@Date1@=Field{date1,@d6.}
+@Date2@=Field{date2,@d6.}
+@DateSt@=Field{dateStart,@d6.b}
+@Descr@ = Field{Descr,@s255}
+
+@FN@=FileName{SverkaMSP.html}
+@UN@=OnReportComplete{WinExec('cmd /d /c start excel /r "' + FilePath + 'SverkaMSP.html'),@s200}    
+@P.@=Field{'"\@"',@s4}  
+@F@ = Field{"@",@s5t}  
+&&
+#@SQL@
+#@FN@
+#@UN@
+#@P.@
+
+
+<html xmlns:o="urn:schemas-microsoft-com:office:office"
+xmlns:x="urn:schemas-microsoft-com:office:excel"
+xmlns="http://www.w3.org/TR/REC-html40">
+
+<head>
+<meta http-equiv=Content-Type content="text/html; charset=windows-1251">
+<meta name=ProgId content=Excel.Sheet>
+<meta name=Generator content="Microsoft Excel 14">
+<link rel=File-List href="Книга1.files/filelist.xml">
+<style id="Книга1_29900_Styles">
+<!--table
+        {mso-displayed-decimal-separator:"\.";
+        mso-displayed-thousand-separator:" ";}
+.xl1529900
+        {padding-top:1px;
+        padding-right:1px;
+        padding-left:1px;
+        mso-ignore:padding;
+        color:black;
+        font-size:11.0pt;
+        font-weight:400;
+        font-style:normal;
+        text-decoration:none;
+        font-family:Calibri, sans-serif;
+        mso-font-charset:204;
+        mso-number-format:General;
+        text-align:general;
+        vertical-align:bottom;
+        mso-background-source:auto;
+        mso-pattern:auto;
+        white-space:nowrap;}
+.xl6329900
+        {padding-top:1px;
+        padding-right:1px;
+        padding-left:1px;
+        mso-ignore:padding;
+        color:black;
+        font-size:11.0pt;
+        font-weight:400;
+        font-style:normal;
+        text-decoration:none;
+        font-family:Calibri, sans-serif;
+        mso-font-charset:204;
+        mso-number-format:General;
+        text-align:center;
+        vertical-align:bottom;
+        border:.5pt solid windowtext;
+        mso-background-source:auto;
+        mso-pattern:auto;
+        white-space:nowrap;}
+.xl6429900
+        {padding-top:1px;
+        padding-right:1px;
+        padding-left:1px;
+        mso-ignore:padding;
+        color:black;
+        font-size:11.0pt;
+        font-weight:400;
+        font-style:normal;
+        text-decoration:none;
+        font-family:Calibri, sans-serif;
+        mso-font-charset:204;
+        mso-number-format:@P.@;
+        text-align:general;
+        vertical-align:bottom;
+        border:.5pt solid windowtext;
+        mso-background-source:auto;
+        mso-pattern:auto;
+        white-space:nowrap;}
+-->
+</style>
+</head>
+
+<body>
+<!--[if !excel]>&nbsp;&nbsp;<![endif]-->
+<!--Следующие сведения были подготовлены мастером публикации веб-страниц
+Microsoft Excel.-->
+<!--При повторной публикации этого документа из Excel все сведения между тегами
+DIV будут заменены.-->
+<!----------------------------->
+<!--НАЧАЛО ФРАГМЕНТА ПУБЛИКАЦИИ МАСТЕРА ВЕБ-СТРАНИЦ EXCEL -->
+<!----------------------------->
+
+<div id="Книга1_29900" align=center x:publishsource="Excel">
+
+<table border=0 cellpadding=0 cellspacing=0 width=639 style='border-collapse:
+ collapse;table-layout:fixed;width:700pt'>
+ <col width=96 style='mso-width-source:userset;mso-width-alt:3510;width:72pt'>
+ <col width=107 style='mso-width-source:userset;mso-width-alt:3913;width:80pt'>
+ <col width=155 style='mso-width-source:userset;mso-width-alt:5668;width:116pt'>
+ <col width= 342style='mso-width-source:userset;mso-width-alt:10276;width:211pt'>
+ <tr height=20 style='height:15.0pt'>
+  <td height=20 class=xl1529900 colspan=3 width=358 style='height:15.0pt;
+  width:268pt>Результаты сверки</td>
+  <td class=xl1529900 width=281 style='width:211pt'></td>
+ </tr>
+ <tr height=20 style='height:15.0pt'>
+  <td height=20 class=xl1529900 style='height:15.0pt'></td>
+  <td class=xl1529900></td>
+  <td class=xl1529900></td>
+  <td class=xl1529900></td>
+ </tr>
+ <tr height=20 style='height:15.0pt'>
+  <td height=20 class=xl6329900 style='height:15.0pt'>ИНН</td>
+  <td class=xl6329900 style='border-left:none'>Категория</td>
+  <td class=xl6329900 style='border-left:none'>Дата включения</td>
+  <td class=xl6329900 style='border-left:none'>Причина</td>
+ </tr>
+$T 
+ <tr height=20 style='height:15.0pt'>
+  <td height=20 class=xl6429900 style='height:15.0pt;border-top:none'>@INN@</td>
+  <td class=xl6429900 style='border-top:none;border-left:none'>@Kat@</td>
+  <td class=xl6429900 style='border-top:none;border-left:none'>@DateSt@</td>
+  <td class=xl6429900 style='border-top:none;border-left:none'>@Descr@</td>
+ </tr>
+$ 
+ <![if supportMisalignedColumns]>
+ <tr height=0 style='display:none'>
+  <td width=96 style='width:72pt'></td>
+  <td width=107 style='width:80pt'></td>
+  <td width=155 style='width:116pt'></td>
+  <td width=281 style='width:211pt'></td>
+ </tr>
+ <![endif]>
+</table>
+
+</div>
+
+
+<!----------------------------->
+<!--КОНЕЦ ФРАГМЕНТА ПУБЛИКАЦИИ МАСТЕРА ВЕБ-СТРАНИЦ EXCEL-->
+<!----------------------------->
+</body>
+
+</html>
+
+&&
+&&

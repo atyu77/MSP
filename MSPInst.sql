@@ -1,4 +1,4 @@
-alter proc MSPInst @date smalldatetime
+create proc MSPInst @date smalldatetime
 as
 
 declare @date1  smalldatetime,        

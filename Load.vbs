@@ -47,10 +47,10 @@ For Each objItem In objPath.Files 'objFolder.Files
 
 'разбираем файл и копируем данные в таблицу
       
-      sServ="vabs2"
-      sDB="MSP"
-      sLogin = "loader"
-      sPasswd = "123456"
+      sServ="SERVER"
+      sDB="DATABASE"
+      sLogin = "USER"
+      sPasswd = "PASSWORD"
       
       objConnection1.Open("provider=SQLOLEDB.1;data source="&sServ&";database="&sDB&";uid="&sLogin&";Password="&sPasswd)
       'objConnection1.ConnectionTimeout
